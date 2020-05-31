@@ -61,7 +61,7 @@ task api(type: Javadoc) {
 /**
  * Produce KDoc for all Spring Framework modules in "build/docs/kdoc"
  */
-dokka {
+/*dokka {
 	dependsOn {
 		tasks.getByName("api")
 	}
@@ -107,7 +107,7 @@ dokka {
 			url = new URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/")
 		}
 	}
-}
+}*/
 
 task downloadResources(type: Download) {
 	def version = "0.2.1.RELEASE"
@@ -136,7 +136,7 @@ asciidoctorj {
  * Produce the Spring Framework Reference documentation
  * from "src/docs/asciidoc" into  "build/asciidoc/html5"
  */
-asciidoctor {
+/*asciidoctor {
 	baseDirFollowsSourceDir()
 	configurations 'asciidoctorExt'
 	sources {
@@ -169,7 +169,7 @@ asciidoctor {
 			stylesheet: 'stylesheet.css',
 			'spring-version': project.version
 	])
-}
+}*/
 
 /**
  * Zip all docs (API and reference) into a single archive
@@ -212,7 +212,7 @@ task schemaZip(type: Zip) {
 		def Properties schemas = new Properties();
 
 		module.sourceSets.main.resources.find {
-			(it.path.endsWith("META-INF/spring.schemas") || it.path.endsWith("META-INF\\spring.schemas"))
+			(it.path.endsWith("META-INF\\spring.schemas") || it.path.endsWith("META-INF\\spring.schemas"))
 		}?.withInputStream { schemas.load(it) }
 
 		for (def key : schemas.keySet()) {
